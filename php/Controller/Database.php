@@ -171,7 +171,6 @@ class Database
         } else {
             return $itemsPerPage && false;
         }
-
     }
 }
 
