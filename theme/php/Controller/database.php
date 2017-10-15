@@ -9,7 +9,7 @@
  * Class to Manage Database connection and query
  * @name        config.php
  * @author      Eike Drost
- * @version     1.0
+ * @version     2.5
  * @category    Database Manage
  */
 class Database
@@ -147,10 +147,6 @@ class Database
         return $Item;
     }
 
-    public function escapeString($str) {
-        return $this->myconn->real_escape_string($str);
-    }
-
     public function fetchAssoc($query) {
         if ($query) {
              $row = mysqli_fetch_assoc($query);
@@ -160,13 +156,22 @@ class Database
         }
     }
 
-    public function limitPage($tableName, $itemsPerPage) {
+    public function escapeString($str) {
+        return $this->myconn->real_escape_string($str);
+    }
+
+    public function maxItemsInPage($tableName, $itemsPerPage) {
         $query = $this->countItems($tableName);
         $count = $this->fetchAssoc($query);
 
-        $limit = $count / $itemsPerPage;
-        $result = floor($limit);
-        return $result;
+        if ($itemsPerPage <= '50') {
+            $limit = $count / $itemsPerPage;
+            $result = floor($limit);
+            return $result;
+        } else {
+            return $itemsPerPage && false;
+        }
+
     }
 }
-?>
+
