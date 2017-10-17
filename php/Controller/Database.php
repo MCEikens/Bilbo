@@ -12,7 +12,8 @@
  * @version     2.5
  * @category    Database Manage
  */
-class Database
+require_once ('./php/Settings/Settings.php');
+class Database extends Settings
 {
     protected $host="";
     protected $username="";
@@ -164,7 +165,7 @@ class Database
         $query = $this->countItems($tableName);
         $count = $this->fetchAssoc($query);
 
-        if ($itemsPerPage <= '50') {
+        if ($itemsPerPage <= $this->getSettings('ITEMSPERPAGE')) {
             $limit = $count / $itemsPerPage;
             $result = floor($limit);
             return $result;
