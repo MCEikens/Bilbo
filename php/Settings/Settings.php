@@ -8,6 +8,11 @@
 
 class Settings
 {
+
+    /*
+     * Function for special settings
+     *
+     */
     public function getSettings($settingType) {
         $settingsArr = array(
             'HIER KOMMT UNSER TABELLENNAME rein' => 'PERSONTABLE',
