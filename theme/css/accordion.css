@@ -15,8 +15,8 @@ button.accordion.active, button.accordion:hover {
     background-color: #ccc;
 }
 
-div.panel {
+div.accordionSubs {
     padding: 0 18px;
     display: none;
-    background-color: white;
+    background-color: #eee;
 }
